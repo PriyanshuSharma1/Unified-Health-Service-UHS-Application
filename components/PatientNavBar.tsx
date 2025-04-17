@@ -13,7 +13,6 @@ import {
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -59,18 +58,17 @@ export function PatientNavBar() {
 						<NavigationMenuList>
 							{navItems.map((item) => (
 								<NavigationMenuItem key={item.name}>
-									<Link href={item.href} legacyBehavior passHref>
-										<NavigationMenuLink
-											className={cn(
-												navigationMenuTriggerStyle(),
-												'flex items-center',
-												pathname === item.href ? 'bg-accent' : ''
-											)}
-										>
-											{item.icon}
-											{item.name}
-										</NavigationMenuLink>
-									</Link>
+									<NavigationMenuLink
+										href={item.href}
+										className={cn(
+											navigationMenuTriggerStyle(),
+											'flex items-center',
+											pathname === item.href ? 'bg-accent' : ''
+										)}
+									>
+										{item.icon}
+										{item.name}
+									</NavigationMenuLink>
 								</NavigationMenuItem>
 							))}
 						</NavigationMenuList>
@@ -99,6 +97,7 @@ export function PatientNavBar() {
 								<Link
 									href='/profile'
 									className='flex items-center cursor-pointer'
+									legacyBehavior
 								>
 									<UserIcon className='mr-2 h-4 w-4' />
 									<span>My Profile</span>
