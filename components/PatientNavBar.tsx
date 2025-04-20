@@ -43,8 +43,8 @@ export function PatientNavBar() {
 	];
 
 	const handleLogout = () => {
-		// Add your logout logic here
-		console.log('Logging out...');
+		localStorage.removeItem('patientToken');
+		window.location.href = '/patient/signin';
 	};
 
 	return (
@@ -97,7 +97,6 @@ export function PatientNavBar() {
 								<Link
 									href='/profile'
 									className='flex items-center cursor-pointer'
-									legacyBehavior
 								>
 									<UserIcon className='mr-2 h-4 w-4' />
 									<span>My Profile</span>

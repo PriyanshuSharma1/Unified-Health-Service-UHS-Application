@@ -10,15 +10,14 @@ export default function PatientAuthLayout({
 }) {
 	// check if token exists in localStorage
 	useEffect(() => {
-		const token = localStorage.getItem('patientToken');
+		const token = localStorage.getItem('hospitalToken');
 		if (!token) {
-			window.location.href = '/patient/signin';
+			window.location.href = '/hospital/signin';
 		}
 	}, []);
 
 	return (
 		<div>
-			<PatientNavBar />
 			<div>{children}</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import {
 	SelectItem,
 } from '@/components/ui/select';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export default function PatientSignUpForm() {
 	const [firstName, setFirstName] = useState('');
@@ -42,7 +43,7 @@ export default function PatientSignUpForm() {
 		}
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/auth/patient/signup',
+				'http://localhost:8000/patient/signup',
 				{
 					firstName,
 					lastName,
@@ -52,13 +53,18 @@ export default function PatientSignUpForm() {
 					contactNumber,
 				}
 			);
-			console.log('Signup Successful:', response.data);
+			toast.success(
+				'Signup successful! Please check your email for verification.'
+			);
 			setSuccessMessage('Signup successful! Please check your email.');
 			Router.push('/patient/signin');
 
 			setErrorMessage('');
 		} catch (error: any) {
 			setErrorMessage(
+				error?.response?.data?.message || 'Signup failed. Please try again.'
+			);
+			toast.error(
 				error?.response?.data?.message || 'Signup failed. Please try again.'
 			);
 		}
@@ -68,22 +74,11 @@ export default function PatientSignUpForm() {
 		<div className='min-h-screen bg-muted flex items-center justify-center px-4 py-12'>
 			<Card className='w-full max-w-xl shadow-xl'>
 				<CardHeader>
-					<CardTitle className='text-accent text-2xl font-bold'>
+					<CardTitle className='text-2xl font-bold'>
 						Welcome to UHS Patient Portal!
 					</CardTitle>
 				</CardHeader>
 				<CardContent className='space-y-4'>
-					{errorMessage && (
-						<p className='text-destructive text-sm font-medium'>
-							{errorMessage}
-						</p>
-					)}
-					{successMessage && (
-						<p className='text-green-600 text-sm font-medium'>
-							{successMessage}
-						</p>
-					)}
-
 					<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
 						<Input
 							placeholder='First Name'
