@@ -43,7 +43,7 @@ export default function PatientSignUpForm() {
 		}
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/patient/signup',
+				'http://localhost:8000/patients/signup',
 				{
 					firstName,
 					lastName,

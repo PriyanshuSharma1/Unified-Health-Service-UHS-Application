@@ -41,7 +41,7 @@ export default function SearchBar() {
 	};
 
 	return (
-		<div className='w-full mb-6'>
+		<div className='container mx-auto'>
 			<div className='flex items-center space-x-2'>
 				<span className='text-xl'>🔍</span>
 				<Input

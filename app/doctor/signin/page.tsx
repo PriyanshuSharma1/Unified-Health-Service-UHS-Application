@@ -30,8 +30,8 @@ export default function DoctorSignInForm() {
 				return;
 			}
 
-			localStorage.setItem('doctorToken', response.data.token);
-			router.push(`/doctor/dashboard?email=${email}`);
+			localStorage.setItem('doctorToken', response.data.doctorToken);
+			router.push(`/doctor/dashboard`);
 		} catch (error) {
 			console.error('Sign-in error:', error);
 			setError('Something went wrong. Please try again.');

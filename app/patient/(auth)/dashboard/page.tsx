@@ -36,7 +36,7 @@ export default function PatientDashboard() {
 				}
 
 				// Make API request with token in Authorization header
-				const response = await axios.get('http://localhost:8000/patient/me', {
+				const response = await axios.get('http://localhost:8000/patients/me', {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -80,9 +80,6 @@ export default function PatientDashboard() {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 px-6 py-8'>
 			<div className='container mx-auto'>
-				{/* Search Bar */}
-				<SearchBar />
-
 				{/* Top Bar with Profile */}
 				<div className='flex items-center justify-between mb-6'>
 					<div>

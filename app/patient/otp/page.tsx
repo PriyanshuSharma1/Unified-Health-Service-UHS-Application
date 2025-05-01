@@ -20,10 +20,13 @@ export default function OTPScreen() {
 		}
 
 		try {
-			const res = await axios.post('http://localhost:8000/patient/verify-otp', {
-				otp,
-				contactNumber,
-			});
+			const res = await axios.post(
+				'http://localhost:8000/patients/verify-otp',
+				{
+					otp,
+					contactNumber,
+				}
+			);
 
 			if (res.data.status === 'error') {
 				setErrorMessage(res.data.message || 'OTP verification failed.');

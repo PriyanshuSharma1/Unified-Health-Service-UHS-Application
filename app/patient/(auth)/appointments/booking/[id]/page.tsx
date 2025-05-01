@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { format } from 'date-fns';
+import { format, isSameDay } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
 import {
 	Card,
@@ -12,9 +12,15 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
 import axios from 'axios';
+
+// Define an interface for the taken slots
+interface TakenAppointment {
+	_id: string;
+	appointmentDate: string;
+	appointmentTime: string;
+	status: string;
+}
 
 export default function AppointmentScreen() {
 	const router = useRouter();
@@ -25,6 +31,31 @@ export default function AppointmentScreen() {
 	const [selectedTime, setSelectedTime] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+
+	// State for taken appointments
+	const [takenAppointments, setTakenAppointments] = useState<
+		TakenAppointment[]
+	>([]);
+
+	// Fetch doctor's taken appointments
+	useEffect(() => {
+		const fetchTakenSlots = async () => {
+			try {
+				const res = await axios.get(
+					`http://localhost:8000/appointments/doctor/${doctorId}`
+				);
+
+				if (res.data && res.data.data && res.data.data.appointments) {
+					setTakenAppointments(res.data.data.appointments);
+					console.log('Taken appointments:', res.data.data.appointments);
+				}
+			} catch (error) {
+				console.error('Error fetching taken slots:', error);
+			}
+		};
+
+		fetchTakenSlots();
+	}, [doctorId]);
 
 	// Generate time slots for specific hours (10-12, 1-3, 5-7)
 	useEffect(() => {
@@ -67,6 +98,23 @@ export default function AppointmentScreen() {
 		setSelectedTime(null); // Reset selected time when date changes
 	}, [date]);
 
+	// Check if a time slot is taken
+	const isSlotTaken = (timeSlot: string): boolean => {
+		if (!date) return false;
+
+		return takenAppointments.some((appointment) => {
+			const appointmentDate = new Date(appointment.appointmentDate);
+			// Compare if it's the same day and same time slot
+			return (
+				isSameDay(appointmentDate, date) &&
+				appointment.appointmentTime === timeSlot &&
+				['scheduled', 'confirmed', 'pending'].includes(
+					appointment.status.toLowerCase()
+				)
+			);
+		});
+	};
+
 	const handleBooking = async () => {
 		if (!date || !selectedTime) {
 			alert('Please select both date and time');
@@ -77,20 +125,14 @@ export default function AppointmentScreen() {
 			setLoading(true);
 			const token = localStorage.getItem('patientToken');
 
-			// Create a new Date object combining the selected date and time
-			const [hours, minutes] = selectedTime.split(':').map(Number);
-			const appointmentDate = new Date(date);
-			appointmentDate.setHours(hours, minutes);
-			console.log('Selected date:', appointmentDate);
-
-			console.log('Booking appointment:', appointmentDate);
-			console.log('Time:', selectedTime);
+			// Format the date as YYYY-MM-DD
+			const formattedDate = format(date, 'yyyy-MM-dd');
 
 			const res = await axios.post(
-				`http://localhost:8000/appointment/booking/${doctorId}`,
+				`http://localhost:8000/appointments/booking/${doctorId}`,
 				{
 					doctorId,
-					appointmentDate,
+					appointmentDate: formattedDate,
 					appointmentTime: selectedTime,
 				},
 				{
@@ -101,7 +143,10 @@ export default function AppointmentScreen() {
 			);
 
 			alert('Appointment booked successfully!');
-			router.push(`/search/bookingdetails/${res.data.data._id}`);
+			console.log('Booking response:', res.data);
+			router.push(
+				`/patient/appointments/detail/${res.data.data.appointment._id}`
+			);
 		} catch (error) {
 			console.error('Error booking appointment:', error);
 			alert('Failed to book appointment. Please try again.');
@@ -130,7 +175,7 @@ export default function AppointmentScreen() {
 		<div className='min-h-screen bg-muted px-6 py-10'>
 			<Card className='max-w-3xl mx-auto shadow-lg'>
 				<CardHeader>
-					<CardTitle className='text-blue-900 text-2xl font-bold'>
+					<CardTitle className='text-primary text-2xl font-bold'>
 						Book Appointment
 					</CardTitle>
 					<CardDescription>
@@ -149,7 +194,7 @@ export default function AppointmentScreen() {
 									onSelect={setDate}
 									className='rounded-md border'
 									disabled={(date) => {
-										// Disable past dates and weekends if needed
+										// Disable past dates
 										const today = new Date();
 										today.setHours(0, 0, 0, 0);
 										return date < today;
@@ -169,24 +214,32 @@ export default function AppointmentScreen() {
 											Morning (10 AM - 12 PM)
 										</h4>
 										<div className='grid grid-cols-4 gap-2'>
-											{morningSlots.map((time) => (
-												<Button
-													key={time}
-													variant={
-														selectedTime === time ? 'default' : 'outline'
-													}
-													className='text-xs h-8'
-													onClick={() => setSelectedTime(time)}
-												>
-													{format(
-														new Date().setHours(
-															parseInt(time.split(':')[0]),
-															parseInt(time.split(':')[1])
-														),
-														'h:mm a'
-													)}
-												</Button>
-											))}
+											{morningSlots.map((time) => {
+												const taken = isSlotTaken(time);
+												return (
+													<Button
+														key={time}
+														variant={
+															selectedTime === time ? 'default' : 'outline'
+														}
+														className={`text-xs h-8 ${
+															taken
+																? 'opacity-50 cursor-not-allowed bg-gray-100'
+																: ''
+														}`}
+														onClick={() => !taken && setSelectedTime(time)}
+														disabled={taken}
+													>
+														{format(
+															new Date().setHours(
+																parseInt(time.split(':')[0]),
+																parseInt(time.split(':')[1])
+															),
+															'h:mm a'
+														)}
+													</Button>
+												);
+											})}
 										</div>
 									</div>
 
@@ -196,24 +249,32 @@ export default function AppointmentScreen() {
 											Afternoon (1 PM - 3 PM)
 										</h4>
 										<div className='grid grid-cols-4 gap-2'>
-											{afternoonSlots.map((time) => (
-												<Button
-													key={time}
-													variant={
-														selectedTime === time ? 'default' : 'outline'
-													}
-													className='text-xs h-8'
-													onClick={() => setSelectedTime(time)}
-												>
-													{format(
-														new Date().setHours(
-															parseInt(time.split(':')[0]),
-															parseInt(time.split(':')[1])
-														),
-														'h:mm a'
-													)}
-												</Button>
-											))}
+											{afternoonSlots.map((time) => {
+												const taken = isSlotTaken(time);
+												return (
+													<Button
+														key={time}
+														variant={
+															selectedTime === time ? 'default' : 'outline'
+														}
+														className={`text-xs h-8 ${
+															taken
+																? 'opacity-50 cursor-not-allowed bg-gray-100'
+																: ''
+														}`}
+														onClick={() => !taken && setSelectedTime(time)}
+														disabled={taken}
+													>
+														{format(
+															new Date().setHours(
+																parseInt(time.split(':')[0]),
+																parseInt(time.split(':')[1])
+															),
+															'h:mm a'
+														)}
+													</Button>
+												);
+											})}
 										</div>
 									</div>
 
@@ -223,24 +284,32 @@ export default function AppointmentScreen() {
 											Evening (5 PM - 7 PM)
 										</h4>
 										<div className='grid grid-cols-4 gap-2'>
-											{eveningSlots.map((time) => (
-												<Button
-													key={time}
-													variant={
-														selectedTime === time ? 'default' : 'outline'
-													}
-													className='text-xs h-8'
-													onClick={() => setSelectedTime(time)}
-												>
-													{format(
-														new Date().setHours(
-															parseInt(time.split(':')[0]),
-															parseInt(time.split(':')[1])
-														),
-														'h:mm a'
-													)}
-												</Button>
-											))}
+											{eveningSlots.map((time) => {
+												const taken = isSlotTaken(time);
+												return (
+													<Button
+														key={time}
+														variant={
+															selectedTime === time ? 'default' : 'outline'
+														}
+														className={`text-xs h-8 ${
+															taken
+																? 'opacity-50 cursor-not-allowed bg-gray-100'
+																: ''
+														}`}
+														onClick={() => !taken && setSelectedTime(time)}
+														disabled={taken}
+													>
+														{format(
+															new Date().setHours(
+																parseInt(time.split(':')[0]),
+																parseInt(time.split(':')[1])
+															),
+															'h:mm a'
+														)}
+													</Button>
+												);
+											})}
 										</div>
 									</div>
 								</div>
@@ -248,7 +317,7 @@ export default function AppointmentScreen() {
 						</div>
 					</div>
 
-					<div className='bg-blue-50 p-4 rounded-lg'>
+					<div className='bg-primary/10 p-4 rounded-lg'>
 						<h3 className='font-medium text-gray-700 mb-2'>
 							Appointment Summary
 						</h3>
@@ -273,7 +342,7 @@ export default function AppointmentScreen() {
 
 					<Button
 						onClick={handleBooking}
-						className='w-full bg-blue-600 text-white text-base font-semibold'
+						className='w-full bg-primary hover:bg-primary/90 text-white text-base font-semibold'
 						disabled={loading || !date || !selectedTime}
 					>
 						{loading ? 'Booking...' : 'Confirm Appointment'}

@@ -14,7 +14,7 @@ export default function PatientSignInForm() {
 	const handleSignIn = async () => {
 		try {
 			const response = await axios.post(
-				'http://localhost:8000/patient/signin',
+				'http://localhost:8000/patients/signin',
 				{ contactNumber }
 			);
 

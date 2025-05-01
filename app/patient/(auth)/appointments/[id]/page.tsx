@@ -19,7 +19,7 @@ import axios from 'axios';
 export default function AppointmentScreen() {
 	const router = useRouter();
 	const params = useParams();
-	const doctorId = params.id;
+	const { id: doctorId } = params;
 
 	const [date, setDate] = useState<Date | undefined>(new Date());
 	const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -38,7 +38,7 @@ export default function AppointmentScreen() {
 				for (let minute = 0; minute < 60; minute += 15) {
 					const formattedHour = hour.toString().padStart(2, '0');
 					const formattedMinute = minute.toString().padStart(2, '0');
-					slots.push(`${formattedHour}:${formattedMinute}`);
+					slots.push(`${formattedHour}:${formattedMinute}:00`);
 				}
 			}
 
@@ -47,7 +47,7 @@ export default function AppointmentScreen() {
 				for (let minute = 0; minute < 60; minute += 15) {
 					const formattedHour = hour.toString().padStart(2, '0');
 					const formattedMinute = minute.toString().padStart(2, '0');
-					slots.push(`${formattedHour}:${formattedMinute}`);
+					slots.push(`${formattedHour}:${formattedMinute}:00`);
 				}
 			}
 
@@ -56,7 +56,7 @@ export default function AppointmentScreen() {
 				for (let minute = 0; minute < 60; minute += 15) {
 					const formattedHour = hour.toString().padStart(2, '0');
 					const formattedMinute = minute.toString().padStart(2, '0');
-					slots.push(`${formattedHour}:${formattedMinute}`);
+					slots.push(`${formattedHour}:${formattedMinute}:00`);
 				}
 			}
 
@@ -80,17 +80,19 @@ export default function AppointmentScreen() {
 			// Create a new Date object combining the selected date and time
 			const [hours, minutes] = selectedTime.split(':').map(Number);
 			const appointmentDate = new Date(date);
-			appointmentDate.setHours(hours, minutes);
-			console.log('Selected date:', appointmentDate);
-
+			console.log('Selected Date:', appointmentDate);
+			appointmentDate.setHours(hours, minutes, 0, 0);
 			console.log('Booking appointment:', appointmentDate);
-			console.log('Time:', selectedTime);
 
 			const res = await axios.post(
 				`http://localhost:8000/appointment/booking/${doctorId}`,
 				{
 					doctorId,
-					appointmentDate,
+					// this gives the date in ISO format in UTC format so the time is not correct
+					// we will directly use the appointment time rather than the date
+					// and the reason is, by saving in the default format, we can easily
+					// convert it to the local time of the user
+					appointmentDate: appointmentDate.toISOString(),
 					appointmentTime: selectedTime,
 				},
 				{
@@ -101,7 +103,9 @@ export default function AppointmentScreen() {
 			);
 
 			alert('Appointment booked successfully!');
-			router.push(`/search/bookingdetails/${res.data.data._id}`);
+			router.push(
+				`/patient/appointments/detail/${res.data.data.appointment._id}`
+			);
 		} catch (error) {
 			console.error('Error booking appointment:', error);
 			alert('Failed to book appointment. Please try again.');
