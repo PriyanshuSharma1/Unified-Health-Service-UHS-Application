@@ -76,7 +76,7 @@ export default function HospitalDashboard() {
 					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
 						<Card
 							className='bg-primary text-white shadow-md hover:shadow-xl transition duration-200 cursor-pointer'
-							onClick={() => router.push('/hospital/appointmentcontrol')}
+							onClick={() => router.push('/hospital/appointment-control')}
 						>
 							<CardContent className='flex flex-col items-center justify-center py-8'>
 								<CalendarIcon className='w-10 h-10 mb-3' />

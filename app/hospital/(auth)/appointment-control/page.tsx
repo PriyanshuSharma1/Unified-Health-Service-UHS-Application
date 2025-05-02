@@ -14,17 +14,17 @@ import { useRouter } from 'next/navigation';
 
 interface Appointment {
 	_id: string;
-	date: string;
-	time: string;
+	appointmentDate: string;
+	appointmentTime: string;
 	status: string;
-	doctor: {
+	doctorId: {
 		firstName: string;
 		lastName: string;
 		specialization: string;
 	};
-	hospital: {
+	hospitalId: {
 		name: string;
-		location: string;
+		address: string;
 	};
 }
 
@@ -38,13 +38,14 @@ export default function HospitalAppointments() {
 		const fetchAppointments = async () => {
 			try {
 				const token = localStorage.getItem('hospitalToken');
-				const res = await fetch('http://localhost:8000/appointment/verify', {
+				const res = await fetch('http://localhost:8000/appointments/hospital', {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
 				});
 				const data = await res.json();
-				setAppointments(data.data);
+				setAppointments(data.data.appointments);
+				console.log(data.data.appointments);
 			} catch (err) {
 				setError('Failed to load appointments');
 			} finally {
@@ -57,8 +58,8 @@ export default function HospitalAppointments() {
 	const updateStatus = async (id: string, status: string) => {
 		try {
 			const token = localStorage.getItem('hospitalToken');
-			await fetch(`http://localhost:8000/appointment/${id}/status`, {
-				method: 'PUT',
+			await fetch(`http://localhost:8000/appointments/status/${id}`, {
+				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${token}`,
@@ -109,14 +110,15 @@ export default function HospitalAppointments() {
 					<Card key={item._id} className='border shadow-sm'>
 						<CardHeader>
 							<CardTitle className='text-xl text-blue-900'>
-								Dr. {item.doctor.firstName} {item.doctor.lastName} (
-								{item.doctor.specialization})
+								Dr. {item.doctorId.firstName} {item.doctorId.lastName} (
+								{item.doctorId.specialization})
 							</CardTitle>
 							<p className='text-sm text-gray-500'>
-								📅 {new Date(item.date).toDateString()} — 🕒 {item.time}
+								📅 {new Date(item.appointmentDate).toDateString()} — 🕒{' '}
+								{item.appointmentTime}
 							</p>
 							<p className='text-sm text-gray-500'>
-								🏥 {item.hospital.name}, {item.hospital.location}
+								🏥 {item.hospitalId.name}, {item.hospitalId.address}
 							</p>
 							<p
 								className={`font-medium ${
