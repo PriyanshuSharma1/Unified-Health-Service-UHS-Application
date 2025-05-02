@@ -85,7 +85,7 @@ export default function DoctorDashBoard() {
 			<div className='min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100'>
 				<div className='text-center'>
 					<div className='w-16 h-16 border-4 border-t-blue-600 border-blue-100 rounded-full animate-spin mx-auto'></div>
-					<p className='mt-4 text-blue-900 font-medium'>Loading dashboard...</p>
+					<p className='mt-4 text-primary font-medium'>Loading dashboard...</p>
 				</div>
 			</div>
 		);
@@ -98,7 +98,7 @@ export default function DoctorDashBoard() {
 				<div className='flex items-center justify-between mb-6'>
 					<div>
 						<p className='text-lg text-gray-600'>Hello,</p>
-						<h1 className='text-3xl font-bold text-blue-900'>
+						<h1 className='text-3xl font-bold text-primary'>
 							{doctor ? `Dr. ${doctor.firstName} ${doctor.lastName}` : 'Doctor'}{' '}
 							👋
 						</h1>
@@ -136,7 +136,7 @@ export default function DoctorDashBoard() {
 						<CardContent className='p-4 flex flex-col items-center'>
 							<span className='text-4xl mb-2'>🩺</span>
 							<Button
-								className='bg-blue-600 text-white text-sm font-semibold'
+								className='bg-primary text-white text-sm font-semibold'
 								onClick={() => router.push('/doctor/appointments')}
 							>
 								View Appointments
@@ -147,7 +147,7 @@ export default function DoctorDashBoard() {
 						<CardContent className='p-4 flex flex-col items-center'>
 							<span className='text-4xl mb-2'>👥</span>
 							<Button
-								className='bg-blue-600 text-white text-sm font-semibold'
+								className='bg-primary text-white text-sm font-semibold'
 								onClick={() => router.push('/doctor/patients')}
 							>
 								My Patients
@@ -159,7 +159,7 @@ export default function DoctorDashBoard() {
 				{/* Appointments Section */}
 				<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 					<CardHeader className='p-4 border-b'>
-						<CardTitle className='text-lg font-semibold text-blue-900'>
+						<CardTitle className='text-lg font-semibold text-primary'>
 							Upcoming Appointments
 						</CardTitle>
 					</CardHeader>
@@ -191,7 +191,7 @@ export default function DoctorDashBoard() {
 									</div>
 								))}
 								<Button
-									className='mt-2 w-full bg-blue-600 text-white text-lg font-semibold'
+									className='mt-2 w-full bg-primary text-white text-lg font-semibold'
 									onClick={() => router.push('/doctor/appointments')}
 								>
 									View All Appointments
@@ -203,7 +203,7 @@ export default function DoctorDashBoard() {
 									You have no upcoming appointments.
 								</p>
 								<Button
-									className='mt-4 w-full bg-blue-600 text-white text-lg font-semibold'
+									className='mt-4 w-full bg-primary text-white text-lg font-semibold'
 									onClick={() => router.push('/doctor/availability')}
 								>
 									📅 Set Availability
@@ -218,7 +218,7 @@ export default function DoctorDashBoard() {
 					<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 						<CardContent className='p-4'>
 							<p className='text-sm text-gray-500'>Today's Appointments</p>
-							<p className='text-2xl font-bold text-blue-900'>
+							<p className='text-2xl font-bold text-primary'>
 								{
 									upcomingAppointments.filter((apt: any) => {
 										const aptDate = new Date(apt.appointmentDate);
@@ -232,7 +232,7 @@ export default function DoctorDashBoard() {
 					<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 						<CardContent className='p-4'>
 							<p className='text-sm text-gray-500'>Total Patients</p>
-							<p className='text-2xl font-bold text-blue-900'>--</p>
+							<p className='text-2xl font-bold text-primary'>--</p>
 						</CardContent>
 					</Card>
 				</div>

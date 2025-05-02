@@ -84,7 +84,7 @@ export default function PatientDashboard() {
 				<div className='flex items-center justify-between mb-6'>
 					<div>
 						<p className='text-lg text-gray-600'>Hello,</p>
-						<h1 className='text-3xl font-bold text-blue-900'>
+						<h1 className='text-3xl font-bold text-primary'>
 							{patient!.firstName} 👋
 						</h1>
 						<p className='text-sm text-gray-500'>{currentDate}</p>
@@ -113,7 +113,7 @@ export default function PatientDashboard() {
 						<CardContent className='p-4 flex flex-col items-center'>
 							<span className='text-4xl mb-2'>🩺</span>
 							<Button
-								className='bg-blue-600 text-white text-sm font-semibold'
+								className='bg-primary text-white text-sm font-semibold'
 								onClick={() => router.push('/patient/appointments')}
 							>
 								View Appointments
@@ -124,7 +124,7 @@ export default function PatientDashboard() {
 						<CardContent className='p-4 flex flex-col items-center'>
 							<span className='text-4xl mb-2'>💊</span>
 							<Button
-								className='bg-blue-600 text-white text-sm font-semibold'
+								className='bg-primary text-white text-sm font-semibold'
 								onClick={() => router.push('/patient/medications')}
 							>
 								My Medications
@@ -136,14 +136,14 @@ export default function PatientDashboard() {
 				{/* Appointments Section */}
 				<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 					<CardHeader className='p-4 border-b'>
-						<CardTitle className='text-lg font-semibold text-blue-900'>
+						<CardTitle className='text-lg font-semibold text-primary'>
 							Upcoming Appointments
 						</CardTitle>
 					</CardHeader>
-					<CardContent className='p-6'>
+					<CardContent className=''>
 						<p className='text-gray-600'>You have no upcoming appointments.</p>
 						<Button
-							className='mt-4 w-full bg-blue-600 text-white text-lg font-semibold'
+							className='mt-4 w-full bg-primary text-white text-lg font-semibold'
 							onClick={() => router.push('/patient/appointments')}
 						>
 							📅 Schedule Appointment

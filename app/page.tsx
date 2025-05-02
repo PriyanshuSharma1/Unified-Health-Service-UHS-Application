@@ -12,9 +12,18 @@ export default function LandingPage() {
 		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center justify-between px-6 py-12'>
 			{/* Hero Section */}
 			<header className='text-center'>
-				<h1 className='text-5xl font-extrabold text-blue-900 mb-4'>
-					Welcome to UHS 👋
-				</h1>
+				<div className='flex items-center text-5xl font-extrabold text-primary mb-4'>
+					<div className='mr-4'>
+						<Image
+							src='/mass-logo.png'
+							alt='MASS Logo'
+							width={40}
+							height={40}
+							className='mr-2'
+						/>
+					</div>
+					<h1>Welcome to MASS 👋</h1>
+				</div>
 				<p className='text-lg text-gray-700'>
 					Your one-stop solution for healthcare management.
 				</p>
@@ -32,7 +41,7 @@ export default function LandingPage() {
 							height={80}
 							className='mb-4'
 						/>
-						<CardTitle className='text-xl font-bold text-blue-900'>
+						<CardTitle className='text-xl font-bold text-primary'>
 							I'm a Patient
 						</CardTitle>
 					</CardHeader>
@@ -41,7 +50,8 @@ export default function LandingPage() {
 							Manage your appointments, medications, and health records.
 						</p>
 						<Button
-							className='w-full bg-blue-600 text-white'
+							className='w-full bg-primary
+               text-white'
 							onClick={() => router.push('/patient/signin')}
 						>
 							Get Started
@@ -59,7 +69,7 @@ export default function LandingPage() {
 							height={80}
 							className='mb-4'
 						/>
-						<CardTitle className='text-xl font-bold text-blue-900'>
+						<CardTitle className='text-xl font-bold text-primary'>
 							I'm a Doctor
 						</CardTitle>
 					</CardHeader>
@@ -68,7 +78,7 @@ export default function LandingPage() {
 							Manage your patients, appointments, and medical records.
 						</p>
 						<Button
-							className='w-full bg-blue-600 text-white'
+							className='w-full bg-primary text-white'
 							onClick={() => router.push('/doctor/signin')}
 						>
 							Get Started
@@ -86,7 +96,7 @@ export default function LandingPage() {
 							height={80}
 							className='mb-4'
 						/>
-						<CardTitle className='text-xl font-bold text-blue-900'>
+						<CardTitle className='text-xl font-bold text-primary'>
 							I'm a Hospital
 						</CardTitle>
 					</CardHeader>
@@ -95,7 +105,7 @@ export default function LandingPage() {
 							Manage your staff, facilities, and patient records.
 						</p>
 						<Button
-							className='w-full bg-blue-600 text-white'
+							className='w-full bg-primary text-white'
 							onClick={() => router.push('/hospital/signin')}
 						>
 							Get Started
@@ -106,13 +116,13 @@ export default function LandingPage() {
 
 			{/* Features Section */}
 			<section className='mt-16 w-full max-w-5xl text-center'>
-				<h2 className='text-3xl font-bold text-blue-900 mb-6'>
-					Why Choose UHS?
+				<h2 className='text-3xl font-bold text-primary mb-6'>
+					Why Choose MASS?
 				</h2>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
 					<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 						<CardContent className='text-center'>
-							<h3 className='text-lg font-bold text-blue-900 mb-2'>
+							<h3 className='text-lg font-bold text-primary mb-2'>
 								Easy to Use
 							</h3>
 							<p className='text-gray-600'>
@@ -122,7 +132,7 @@ export default function LandingPage() {
 					</Card>
 					<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 						<CardContent className='text-center'>
-							<h3 className='text-lg font-bold text-blue-900 mb-2'>
+							<h3 className='text-lg font-bold text-primary mb-2'>
 								Secure & Reliable
 							</h3>
 							<p className='text-gray-600'>
@@ -132,7 +142,7 @@ export default function LandingPage() {
 					</Card>
 					<Card className='bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow'>
 						<CardContent className='text-center'>
-							<h3 className='text-lg font-bold text-blue-900 mb-2'>
+							<h3 className='text-lg font-bold text-primary mb-2'>
 								Comprehensive Tools
 							</h3>
 							<p className='text-gray-600'>

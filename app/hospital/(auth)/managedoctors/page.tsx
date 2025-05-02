@@ -105,7 +105,7 @@ export default function HospitalDoctors() {
 				{doctors.map((item) => (
 					<Card key={item._id} className='border shadow-sm'>
 						<CardHeader>
-							<CardTitle className='text-xl text-blue-900 mb-1'>
+							<CardTitle className='text-xl text-primary mb-1'>
 								Dr. {item.firstName} {item.lastName}
 							</CardTitle>
 							<p className='text-sm text-gray-600'>

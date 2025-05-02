@@ -76,7 +76,7 @@ export default function HospitalAppointments() {
 	if (loading) {
 		return (
 			<div className='min-h-screen flex items-center justify-center'>
-				<p className='text-blue-600 text-lg font-medium'>
+				<p className='text-primary text-lg font-medium'>
 					Loading appointments...
 				</p>
 			</div>

@@ -273,7 +273,7 @@ export default function AppointmentScreen() {
 
 					<Button
 						onClick={handleBooking}
-						className='w-full bg-blue-600 text-white text-base font-semibold'
+						className='w-full bg-primary text-white text-base font-semibold'
 						disabled={loading || !date || !selectedTime}
 					>
 						{loading ? 'Booking...' : 'Confirm Appointment'}

@@ -75,7 +75,7 @@ export default function PatientSignUpForm() {
 			<Card className='w-full max-w-xl shadow-xl'>
 				<CardHeader>
 					<CardTitle className='text-2xl font-bold'>
-						Welcome to UHS Patient Portal!
+						Welcome to MASS Patient Portal!
 					</CardTitle>
 				</CardHeader>
 				<CardContent className='space-y-4'>

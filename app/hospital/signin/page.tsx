@@ -44,7 +44,7 @@ export default function HospitalSignIn() {
 		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center px-4 py-12'>
 			<Card className='w-full max-w-md shadow-xl'>
 				<CardHeader>
-					<CardTitle className='text-blue-900 text-3xl font-extrabold'>
+					<CardTitle className='text-primary text-3xl font-extrabold'>
 						Welcome Back!
 					</CardTitle>
 					<p className='text-sm text-muted-foreground mt-1'>
@@ -77,7 +77,7 @@ export default function HospitalSignIn() {
 
 					<div className='text-sm text-muted-foreground text-center'>
 						Don’t have an account?{' '}
-						<Link href='/hospital/signup' className='text-blue-600 font-medium'>
+						<Link href='/hospital/signup' className='text-primary font-medium'>
 							Sign Up
 						</Link>
 					</div>

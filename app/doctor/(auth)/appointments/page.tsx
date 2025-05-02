@@ -172,7 +172,7 @@ export default function DoctorAppointments() {
 	const getStatusBadge = (status: string) => {
 		switch (status.toLowerCase()) {
 			case 'scheduled':
-				return <Badge className='bg-blue-600 text-white'>Scheduled</Badge>;
+				return <Badge className='bg-primary text-white'>Scheduled</Badge>;
 			case 'pending':
 				return <Badge className='bg-yellow-500 text-yellow-900'>Pending</Badge>;
 			case 'completed':
@@ -197,11 +197,11 @@ export default function DoctorAppointments() {
 			appointment.appointmentTime || format(appointmentDate, 'h:mm a');
 
 		return (
-			<Card className='mb-4 overflow-hidden border-l-4 border-l-blue-600'>
+			<Card className='mb-4 overflow-hidden border-l-4 border-l-primary'>
 				<CardHeader className='pb-2'>
 					<div className='flex justify-between items-start'>
 						<div>
-							<CardTitle className='text-blue-900 text-lg'>
+							<CardTitle className='text-primary text-lg'>
 								{appointment.patientId.firstName}{' '}
 								{appointment.patientId.lastName}
 							</CardTitle>
@@ -216,16 +216,16 @@ export default function DoctorAppointments() {
 				<CardContent className='pb-2'>
 					<div className='grid gap-1'>
 						<div className='flex items-center text-sm'>
-							<Calendar className='h-4 w-4 mr-2 text-blue-600' />
+							<Calendar className='h-4 w-4 mr-2 text-primary' />
 							<span>{format(appointmentDate, 'EEEE, MMMM d, yyyy')}</span>
 						</div>
 						<div className='flex items-center text-sm'>
-							<Clock className='h-4 w-4 mr-2 text-blue-600' />
+							<Clock className='h-4 w-4 mr-2 text-primary' />
 							<span>{displayTime}</span>
 						</div>
 						{appointment.hospitalId && (
 							<div className='flex items-center text-sm'>
-								<MapPin className='h-4 w-4 mr-2 text-blue-600' />
+								<MapPin className='h-4 w-4 mr-2 text-primary' />
 								<span>{appointment.hospitalId.name}</span>
 							</div>
 						)}
@@ -280,7 +280,7 @@ export default function DoctorAppointments() {
 	if (loading) {
 		return (
 			<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6'>
-				<h1 className='text-3xl font-bold text-blue-900 mb-8'>
+				<h1 className='text-3xl font-bold text-primary mb-8'>
 					My Appointments
 				</h1>
 				<div className='space-y-4'>
@@ -314,7 +314,7 @@ export default function DoctorAppointments() {
 					<CardContent>
 						<p>{error}</p>
 						<Button
-							className='mt-4 bg-blue-600'
+							className='mt-4 bg-primary'
 							onClick={() => window.location.reload()}
 						>
 							Try Again
@@ -327,25 +327,25 @@ export default function DoctorAppointments() {
 
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6'>
-			<h1 className='text-3xl font-bold text-blue-900 mb-6'>My Appointments</h1>
+			<h1 className='text-3xl font-bold text-primary mb-6'>My Appointments</h1>
 
 			<Tabs defaultValue='today' className='w-full mb-6'>
 				<TabsList className='grid w-full grid-cols-3 mb-8'>
 					<TabsTrigger
 						value='today'
-						className='data-[state=active]:bg-blue-600 data-[state=active]:text-white'
+						className='data-[state=active]:bg-primary data-[state=active]:text-white'
 					>
 						Today ({todayAppointments.length})
 					</TabsTrigger>
 					<TabsTrigger
 						value='upcoming'
-						className='data-[state=active]:bg-blue-600 data-[state=active]:text-white'
+						className='data-[state=active]:bg-primary data-[state=active]:text-white'
 					>
 						Upcoming ({upcomingAppointments.length})
 					</TabsTrigger>
 					<TabsTrigger
 						value='past'
-						className='data-[state=active]:bg-blue-600 data-[state=active]:text-white'
+						className='data-[state=active]:bg-primary data-[state=active]:text-white'
 					>
 						Past ({pastAppointments.length})
 					</TabsTrigger>

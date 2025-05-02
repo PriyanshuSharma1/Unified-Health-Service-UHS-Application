@@ -75,7 +75,7 @@ export default function HospitalDashboard() {
 					</h2>
 					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
 						<Card
-							className='bg-blue-600 text-white shadow-md hover:shadow-xl transition duration-200 cursor-pointer'
+							className='bg-primary text-white shadow-md hover:shadow-xl transition duration-200 cursor-pointer'
 							onClick={() => router.push('/hospital/appointmentcontrol')}
 						>
 							<CardContent className='flex flex-col items-center justify-center py-8'>
@@ -117,21 +117,21 @@ export default function HospitalDashboard() {
 						<CardContent className='flex flex-col space-y-2 py-6 px-4'>
 							<Button
 								variant='ghost'
-								className='justify-start text-blue-700'
+								className='justify-start text-primary'
 								onClick={() => router.push('/admin/editProfile')}
 							>
 								Edit Profile
 							</Button>
 							<Button
 								variant='ghost'
-								className='justify-start text-blue-700'
+								className='justify-start text-primary'
 								onClick={() => router.push('/admin/manageStaff')}
 							>
 								Manage Staff
 							</Button>
 							<Button
 								variant='ghost'
-								className='justify-start text-blue-700'
+								className='justify-start text-primary'
 								onClick={() => router.push('/admin/manageEquipment')}
 							>
 								Manage Equipment

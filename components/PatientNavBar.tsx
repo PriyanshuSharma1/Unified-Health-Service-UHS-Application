@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { CalendarIcon, PillIcon, UserIcon, LogOutIcon } from 'lucide-react';
 import axios from 'axios';
+import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 import {
@@ -106,7 +107,13 @@ export function PatientNavBar() {
 			<div className='container flex h-16 items-center justify-between px-4 mx-auto'>
 				<div className='flex items-center'>
 					<Link href='/patient/dashboard' className='font-semibold mr-8'>
-						Patient
+						<Image
+							src='/mass-logo.png'
+							alt='MASS Logo'
+							width={40}
+							height={40}
+							className='mr-2'
+						/>
 					</Link>
 					<NavigationMenu>
 						<NavigationMenuList>

@@ -38,7 +38,7 @@ export default function HospitalProfileScreen() {
 	if (loading) {
 		return (
 			<div className='min-h-screen flex items-center justify-center bg-white'>
-				<p className='text-blue-600 text-lg font-medium'>
+				<p className='text-primary text-lg font-medium'>
 					Loading hospital info...
 				</p>
 			</div>
@@ -51,7 +51,7 @@ export default function HospitalProfileScreen() {
 			<div className='mb-6'>
 				<Button
 					variant='ghost'
-					className='flex items-center space-x-2 text-blue-600'
+					className='flex items-center space-x-2 text-primary'
 					onClick={() => router.push('/patient/dashboard')}
 				>
 					<svg
@@ -119,7 +119,7 @@ export default function HospitalProfileScreen() {
 											{item.specialization || 'General Physician'}
 										</p>
 									</div>
-									<Button variant='link' className='text-blue-600 text-sm'>
+									<Button variant='link' className='text-primary text-sm'>
 										Book →
 									</Button>
 								</CardContent>

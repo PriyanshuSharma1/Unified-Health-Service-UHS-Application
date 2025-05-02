@@ -36,7 +36,7 @@ export default function HospitalSearchResults({ hospitals }: Props) {
 						<p className='text-gray-600'>{hospital.address}</p>
 						<p className='text-gray-500'>📞 {hospital.contactNumber}</p>
 						<Link href={`/patient/hospitals/${hospital._id}`}>
-							<Button className='mt-3 w-full bg-blue-600 text-white'>
+							<Button className='mt-3 w-full bg-primary text-white'>
 								View Profile
 							</Button>
 						</Link>
