@@ -96,11 +96,11 @@ export default function HospitalDashboard() {
 
 						<Card
 							className='bg-purple-600 text-white shadow-md hover:shadow-xl transition duration-200 cursor-pointer'
-							onClick={() => router.push('/admin/managePatients')}
+							onClick={() => router.push('/hospital/detail')}
 						>
 							<CardContent className='flex flex-col items-center justify-center py-8'>
-								<User2Icon className='w-10 h-10 mb-3' />
-								<h3 className='text-lg font-semibold'>Patients</h3>
+								<HospitalIcon className='w-10 h-10 mb-3' />
+								<h3 className='text-lg font-semibold'>Details</h3>
 							</CardContent>
 						</Card>
 					</div>
@@ -135,6 +135,16 @@ export default function HospitalDashboard() {
 								onClick={() => router.push('/admin/manageEquipment')}
 							>
 								Manage Equipment
+							</Button>
+							<Button
+								variant='ghost'
+								className='justify-start text-primary'
+								onClick={() => {
+									localStorage.removeItem('hospitalToken');
+									router.push('/hospital/signin');
+								}}
+							>
+								Log out
 							</Button>
 						</CardContent>
 					</Card>
