@@ -1,0 +1,155 @@
+[
+    {
+      "_id": {
+        "$oid": "a3d59c5eb5c348bd8c3815d9"
+      },
+      "name": "Dharani Hospital",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "Main Road, Ganesh Nagar, Sangareddy Bypass Road, Sangareddy (Near Collectorate Office)",
+      "postalCode": "502001",
+      "contactNumber": "7022063557",
+      "email": "info@dharanihospital.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "9e43ff6404b44186ba686fe6"
+      },
+      "name": "Padmavathi multispeciality hopsital",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "Main Road, NH Highway 161, Shivaji Nagar, Sangareddy - 502001 (Opp. to Govt. ITI)",
+      "postalCode": "502001",
+      "contactNumber": "7487914026",
+      "email": "padmavathihospital234@gmail.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "4935172e04674683892a88c1"
+      },
+      "name": "Shree Balaji Multispeciality Hospital",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "National Highway 65, Manjeera Nagar, Sangareddy - 502001 (Near Kandi Village X Road)",
+      "postalCode": "502001",
+      "contactNumber": "7947143293",
+      "email": "balaji.hospital@yahoo.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "a885acaba97047d7891ed16d"
+      },
+      "name": "Wellness Hospital",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "3-29/2/A/1, beside Mumbai Highway, Sangareddy, Pothreddipalle, Telangana 500285",
+      "postalCode": "500285",
+      "contactNumber": "09559551500",
+      "email": "care@wellnesshospitals.co.in",
+      "password": "Wellness@123",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "22cc27afdf6c4731a4b388c3"
+      },
+      "name": "SAHASRA HOSPITAL",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "J35M+23C, IITH Main Rd, Manjeera Nagar, Balaji Nagar, Ahmed Nagar, Sangareddy",
+      "postalCode": "502001",
+      "contactNumber": "8455272333",
+      "email": "sahasrahospital@example.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "27c75b65cf3a4772a4cc5f57"
+      },
+      "name": "Sahithi Hospital",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "MAIN ROAD, Sangareddy Ho, Sangareddy - 502001 (OPPOSITE RYTHU BAZAR)",
+      "postalCode": "502001",
+      "contactNumber": "0000000000",
+      "email": "sahithihospital@example.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "4b0d097de14a445a8e3e9d59"
+      },
+      "name": "Keerthi Hospitals",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "H No 7-52/7, Fasalwadi Village, X Roads, Sangareddy - 502001 (Near Fasalwadi)",
+      "postalCode": "502001",
+      "contactNumber": "08465000939",
+      "email": "keerthihospitals@example.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "ceed9ef0964948d8873959b0"
+      },
+      "name": "GOKUL VENKATESHWARA SUPER SPECIALITY HOSPITAL",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "ODF Colony, Opp Telangana Township, NH-65, on Service road, towards Sangareddy",
+      "postalCode": "502001",
+      "contactNumber": "09063023291",
+      "email": "gokulvenkateshwara@example.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "fc33f2763c714154b83a80c5"
+      },
+      "name": "Sri Kethana Hospitals",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "country": "India",
+      "address": "Plot No. 5&6, Vidya Nagar, opposite Sri Chaitanya Techno school, Sangareddy",
+      "postalCode": "502209",
+      "contactNumber": "09709108108",
+      "email": "srikethanahospitals@gmail.com",
+      "password": "$2b$10$VznI/C3AgZYC6AhGz5XmMO9whEoEUyrjzk7rruiuzHB4KpOk3TAqy",
+      "registrationDocument": "uploads/1744738005611-payment_receipt.pdf",
+      "isValidated": false,
+      "__v": 0
+    }
+  ]
