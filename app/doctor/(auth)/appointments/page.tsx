@@ -347,7 +347,7 @@ export default function DoctorAppointments() {
 						value='past'
 						className='data-[state=active]:bg-primary data-[state=active]:text-white'
 					>
-						Past ({pastAppointments.length})
+						All ({pastAppointments.length})
 					</TabsTrigger>
 				</TabsList>
 

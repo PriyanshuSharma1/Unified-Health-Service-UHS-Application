@@ -26,6 +26,10 @@ interface Appointment {
 		name: string;
 		address: string;
 	};
+	patientId: {
+		firstName: string;
+		lastName: string;
+	};
 }
 
 export default function HospitalAppointments() {
@@ -106,61 +110,61 @@ export default function HospitalAppointments() {
 			</h1>
 
 			<div className='space-y-6'>
-				{appointments.map((item) => (
-					<Card key={item._id} className='border shadow-sm'>
-						<CardHeader>
-							<CardTitle className='text-xl text-blue-900'>
-								Dr. {item.doctorId.firstName} {item.doctorId.lastName} (
-								{item.doctorId.specialization})
-							</CardTitle>
-							<p className='text-sm text-gray-500'>
-								📅 {new Date(item.appointmentDate).toDateString()} — 🕒{' '}
-								{item.appointmentTime}
-							</p>
-							<p className='text-sm text-gray-500'>
-								🏥 {item.hospitalId.name}, {item.hospitalId.address}
-							</p>
-							<p
-								className={`font-medium ${
-									item.status === 'pending'
-										? 'text-yellow-600'
-										: item.status === 'confirmed'
-										? 'text-green-600'
-										: 'text-red-600'
-								}`}
-							>
-								Status: {item.status}
-							</p>
-						</CardHeader>
-						<CardContent className='space-y-3'>
-							<Select
-								onValueChange={(value) => updateStatus(item._id, value)}
-								defaultValue={item.status}
-							>
-								<SelectTrigger className='w-full'>
-									<SelectValue placeholder='Update status' />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value='pending'>Pending</SelectItem>
-									<SelectItem value='confirmed'>Confirmed</SelectItem>
-									<SelectItem value='changed'>Changed</SelectItem>
-									<SelectItem value='cancelled'>Cancelled</SelectItem>
-								</SelectContent>
-							</Select>
-
-							<Button
-								onClick={() => router.push(`/hospital/appointment/${item._id}`)}
-								variant='outline'
-								className='w-full'
-							>
-								✏️ Detailed Status Update
-							</Button>
-						</CardContent>
-					</Card>
-				))}
+				{appointments.length > 0 ? (
+					appointments.map((item) => (
+						<Card key={item._id} className='border shadow-sm'>
+							<CardHeader>
+								<CardTitle className='text-xl text-blue-900'>
+									Dr. {item.doctorId.firstName} {item.doctorId.lastName} (
+									{item.doctorId.specialization})
+								</CardTitle>
+								<p className='text-sm text-gray-500'>
+									Patient Name: {item.patientId.firstName}{' '}
+									{item.patientId.lastName}
+								</p>
+								<p className='text-sm text-gray-500'>
+									📅 {new Date(item.appointmentDate).toDateString()} — 🕒{' '}
+									{item.appointmentTime}
+								</p>
+								<p className='text-sm text-gray-500'>
+									🏥 {item.hospitalId.name}, {item.hospitalId.address}
+								</p>
+								<p
+									className={`font-medium ${
+										item.status === 'pending'
+											? 'text-yellow-600'
+											: item.status === 'confirmed'
+											? 'text-green-600'
+											: 'text-red-600'
+									}`}
+								>
+									Status: {item.status}
+								</p>
+							</CardHeader>
+							<CardContent className='space-y-3'>
+								<Select
+									onValueChange={(value) => updateStatus(item._id, value)}
+									defaultValue={item.status}
+								>
+									<SelectTrigger className='w-full'>
+										<SelectValue placeholder='Update status' />
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value='pending'>Pending</SelectItem>
+										<SelectItem value='confirmed'>Confirmed</SelectItem>
+										<SelectItem value='changed'>Changed</SelectItem>
+										<SelectItem value='cancelled'>Cancelled</SelectItem>
+									</SelectContent>
+								</Select>
+							</CardContent>
+						</Card>
+					))
+				) : (
+					<p className='text-gray-500 text-lg'>
+						No appointments available at the moment.
+					</p>
+				)}
 			</div>
-
-			<Separator className='my-10' />
 		</div>
 	);
 }
