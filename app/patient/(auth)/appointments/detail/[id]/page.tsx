@@ -127,7 +127,7 @@ export default function AppointmentDetailPage() {
 			const token = localStorage.getItem('patientToken');
 
 			await axios.patch(
-				`http://localhost:8000/appointments/${appointment._id}/status`,
+				`http://localhost:8000/appointments/status/${appointment._id}`,
 				{ status: 'cancelled' },
 				{
 					headers: {
