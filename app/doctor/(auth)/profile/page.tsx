@@ -262,7 +262,7 @@ export default function DoctorProfile() {
 	}
 
 	return (
-		<div className='container max-w-6xl mx-auto py-8 px-4'>
+		<div className='container mx-auto py-8 px-4'>
 			<Tabs defaultValue='profile' value={tab} onValueChange={setTab}>
 				<TabsList className='grid w-full grid-cols-2'>
 					<TabsTrigger value='profile'>View Profile</TabsTrigger>

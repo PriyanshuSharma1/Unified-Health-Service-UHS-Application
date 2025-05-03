@@ -269,100 +269,104 @@ export default function DoctorAppointments() {
 
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6'>
-			<h1 className='text-3xl font-bold text-primary mb-6'>My Appointments</h1>
+			<div className='container mx-auto'>
+				<h1 className='text-3xl font-bold text-primary mb-6'>
+					My Appointments
+				</h1>
 
-			<Tabs defaultValue='today' className='w-full mb-6'>
-				<TabsList className='grid w-full grid-cols-3 mb-8'>
-					<TabsTrigger
-						value='today'
-						className='data-[state=active]:bg-primary data-[state=active]:text-white'
-					>
-						Today ({todayAppointments.length})
-					</TabsTrigger>
-					<TabsTrigger
-						value='upcoming'
-						className='data-[state=active]:bg-primary data-[state=active]:text-white'
-					>
-						Upcoming ({upcomingAppointments.length})
-					</TabsTrigger>
-					<TabsTrigger
-						value='past'
-						className='data-[state=active]:bg-primary data-[state=active]:text-white'
-					>
-						All ({pastAppointments.length})
-					</TabsTrigger>
-				</TabsList>
+				<Tabs defaultValue='today' className='w-full mb-6'>
+					<TabsList className='grid w-full grid-cols-3 mb-8'>
+						<TabsTrigger
+							value='today'
+							className='data-[state=active]:bg-primary data-[state=active]:text-white'
+						>
+							Today ({todayAppointments.length})
+						</TabsTrigger>
+						<TabsTrigger
+							value='upcoming'
+							className='data-[state=active]:bg-primary data-[state=active]:text-white'
+						>
+							Upcoming ({upcomingAppointments.length})
+						</TabsTrigger>
+						<TabsTrigger
+							value='past'
+							className='data-[state=active]:bg-primary data-[state=active]:text-white'
+						>
+							All ({pastAppointments.length})
+						</TabsTrigger>
+					</TabsList>
 
-				<TabsContent value='today' className='mt-0'>
-					{todayAppointments.length > 0 ? (
-						<div className='space-y-4'>
-							{todayAppointments.map((appointment) => (
-								<AppointmentCard
-									key={appointment._id}
-									appointment={appointment}
-								/>
-							))}
-						</div>
-					) : (
-						<Card className='bg-white'>
-							<CardContent className='p-8 text-center'>
-								<h3 className='font-medium text-lg'>
-									No appointments scheduled for today
-								</h3>
-								<p className='text-gray-500 mt-2'>
-									You have no appointments scheduled for today.
-								</p>
-							</CardContent>
-						</Card>
-					)}
-				</TabsContent>
+					<TabsContent value='today' className='mt-0'>
+						{todayAppointments.length > 0 ? (
+							<div className='space-y-4'>
+								{todayAppointments.map((appointment) => (
+									<AppointmentCard
+										key={appointment._id}
+										appointment={appointment}
+									/>
+								))}
+							</div>
+						) : (
+							<Card className='bg-white'>
+								<CardContent className='p-8 text-center'>
+									<h3 className='font-medium text-lg'>
+										No appointments scheduled for today
+									</h3>
+									<p className='text-gray-500 mt-2'>
+										You have no appointments scheduled for today.
+									</p>
+								</CardContent>
+							</Card>
+						)}
+					</TabsContent>
 
-				<TabsContent value='upcoming' className='mt-0'>
-					{upcomingAppointments.length > 0 ? (
-						<div className='space-y-4'>
-							{upcomingAppointments.map((appointment) => (
-								<AppointmentCard
-									key={appointment._id}
-									appointment={appointment}
-								/>
-							))}
-						</div>
-					) : (
-						<Card className='bg-white'>
-							<CardContent className='p-8 text-center'>
-								<h3 className='font-medium text-lg'>
-									No upcoming appointments
-								</h3>
-								<p className='text-gray-500 mt-2'>
-									You have no upcoming appointments scheduled.
-								</p>
-							</CardContent>
-						</Card>
-					)}
-				</TabsContent>
+					<TabsContent value='upcoming' className='mt-0'>
+						{upcomingAppointments.length > 0 ? (
+							<div className='space-y-4'>
+								{upcomingAppointments.map((appointment) => (
+									<AppointmentCard
+										key={appointment._id}
+										appointment={appointment}
+									/>
+								))}
+							</div>
+						) : (
+							<Card className='bg-white'>
+								<CardContent className='p-8 text-center'>
+									<h3 className='font-medium text-lg'>
+										No upcoming appointments
+									</h3>
+									<p className='text-gray-500 mt-2'>
+										You have no upcoming appointments scheduled.
+									</p>
+								</CardContent>
+							</Card>
+						)}
+					</TabsContent>
 
-				<TabsContent value='past' className='mt-0'>
-					{pastAppointments.length > 0 ? (
-						<div className='space-y-4'>
-							{pastAppointments.map((appointment) => (
-								<AppointmentCard
-									key={appointment._id}
-									appointment={appointment}
-								/>
-							))}
-						</div>
-					) : (
-						<Card className='bg-white'>
-							<CardContent className='p-8 text-center'>
-								<h3 className='font-medium text-lg'>No past appointments</h3>
-								<p className='text-gray-500 mt-2'>
-									Your appointment history will appear here.
-								</p>
-							</CardContent>
-						</Card>
-					)}
-				</TabsContent>
-			</Tabs>
+					<TabsContent value='past' className='mt-0'>
+						{pastAppointments.length > 0 ? (
+							<div className='space-y-4'>
+								{pastAppointments.map((appointment) => (
+									<AppointmentCard
+										key={appointment._id}
+										appointment={appointment}
+									/>
+								))}
+							</div>
+						) : (
+							<Card className='bg-white'>
+								<CardContent className='p-8 text-center'>
+									<h3 className='font-medium text-lg'>No past appointments</h3>
+									<p className='text-gray-500 mt-2'>
+										Your appointment history will appear here.
+									</p>
+								</CardContent>
+							</Card>
+						)}
+					</TabsContent>
+				</Tabs>
+			</div>
 		</div>
 	);
 }

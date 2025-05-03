@@ -49,7 +49,6 @@ export default function HospitalAppointments() {
 				});
 				const data = await res.json();
 				setAppointments(data.data.appointments);
-				console.log(data.data.appointments);
 			} catch (err) {
 				setError('Failed to load appointments');
 			} finally {

@@ -89,7 +89,7 @@ export default function HospitalDoctors() {
 	}
 
 	return (
-		<div className='min-h-screen bg-muted px-6 py-8'>
+		<div className='min-h-screen container mx-auto px-6 py-8'>
 			<Button
 				variant='outline'
 				className='mb-4'
@@ -97,9 +97,6 @@ export default function HospitalDoctors() {
 			>
 				← Back to Dashboard
 			</Button>
-			<h1 className='text-3xl font-extrabold text-accent mb-6'>
-				Doctors to Review
-			</h1>
 
 			<div className='space-y-6'>
 				{doctors.map((item) => (
