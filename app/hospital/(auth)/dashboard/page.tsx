@@ -118,27 +118,6 @@ export default function HospitalDashboard() {
 							<Button
 								variant='ghost'
 								className='justify-start text-primary'
-								onClick={() => router.push('/admin/editProfile')}
-							>
-								Edit Profile
-							</Button>
-							<Button
-								variant='ghost'
-								className='justify-start text-primary'
-								onClick={() => router.push('/admin/manageStaff')}
-							>
-								Manage Staff
-							</Button>
-							<Button
-								variant='ghost'
-								className='justify-start text-primary'
-								onClick={() => router.push('/admin/manageEquipment')}
-							>
-								Manage Equipment
-							</Button>
-							<Button
-								variant='ghost'
-								className='justify-start text-primary'
 								onClick={() => {
 									localStorage.removeItem('hospitalToken');
 									router.push('/hospital/signin');
