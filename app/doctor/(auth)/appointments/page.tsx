@@ -68,8 +68,9 @@ export default function DoctorAppointments() {
 					return;
 				}
 
-				const res = await axios.get(
-					'http://localhost:8000/appointments/doctor',
+				// get current doctor info
+				const doctorRes = await axios.get(
+					'http://localhost:8000/auth/doctor/me',
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
@@ -77,9 +78,18 @@ export default function DoctorAppointments() {
 					}
 				);
 
-				if (res.data && res.data.data && res.data.data.appointments) {
+				const res = await axios.get(
+					`http://localhost:8000/appointments/doctor/${doctorRes.data.data._id}`,
+					{
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					}
+				);
+
+				if (res.data) {
 					setAppointments(res.data.data.appointments);
-					console.log('Fetched appointments:', res.data.data.appointments);
+					console.log('Fetched appointments:', res.data);
 				} else {
 					setAppointments([]);
 				}
@@ -92,39 +102,7 @@ export default function DoctorAppointments() {
 		};
 
 		fetchAppointments();
-	}, [router]);
-
-	const updateAppointmentStatus = async (
-		appointmentId: string,
-		newStatus: string
-	) => {
-		try {
-			const token = localStorage.getItem('doctorToken');
-			await axios.patch(
-				`http://localhost:8000/appointment/${appointmentId}/status`,
-				{ status: newStatus },
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
-			);
-
-			// Update local state
-			setAppointments(
-				appointments.map((appointment) =>
-					appointment._id === appointmentId
-						? { ...appointment, status: newStatus as any }
-						: appointment
-				)
-			);
-
-			alert(`Appointment marked as ${newStatus}`);
-		} catch (err) {
-			console.error('Error updating appointment status:', err);
-			alert('Failed to update appointment status');
-		}
-	};
+	}, []);
 
 	// Filter appointments based on date and status
 	const todayAppointments = appointments.filter((appointment) => {
@@ -237,42 +215,6 @@ export default function DoctorAppointments() {
 						)}
 					</div>
 				</CardContent>
-				<CardFooter className='pt-2 flex justify-between'>
-					<Button
-						variant='outline'
-						size='sm'
-						onClick={() =>
-							router.push(`/doctor/appointments/${appointment._id}`)
-						}
-					>
-						View Details
-					</Button>
-
-					{!isPast && (
-						<div className='flex gap-2'>
-							<Button
-								variant='default'
-								size='sm'
-								className='bg-green-600 hover:bg-green-700'
-								onClick={() =>
-									updateAppointmentStatus(appointment._id, 'completed')
-								}
-							>
-								Complete
-							</Button>
-							<Button
-								variant='outline'
-								size='sm'
-								className='border-red-600 text-red-600 hover:bg-red-50'
-								onClick={() =>
-									updateAppointmentStatus(appointment._id, 'no-show')
-								}
-							>
-								No Show
-							</Button>
-						</div>
-					)}
-				</CardFooter>
 			</Card>
 		);
 	};
