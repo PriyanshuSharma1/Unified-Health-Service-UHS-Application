@@ -21,6 +21,7 @@ export default function AdminSignUpForm() {
     email: "",
     password: "",
     contactNumber: "",
+    services: "",
   });
 
   const [registrationDocument, setRegistrationDocument] = useState<File | null>(
@@ -49,6 +50,7 @@ export default function AdminSignUpForm() {
       email,
       password,
       contactNumber,
+      services,
     } = formData;
 
     const isEmpty = [
@@ -61,6 +63,7 @@ export default function AdminSignUpForm() {
       email,
       password,
       contactNumber,
+      services,
     ].some((field) => !field);
 
     if (isEmpty) {
@@ -199,6 +202,12 @@ export default function AdminSignUpForm() {
             placeholder="Address"
             name="address"
             value={formData.address}
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Services Offered"
+            name="services"
+            value={formData.services}
             onChange={handleChange}
           />
 
