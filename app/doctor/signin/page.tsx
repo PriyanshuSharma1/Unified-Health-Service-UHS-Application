@@ -80,6 +80,14 @@ export default function DoctorSignInForm() {
               Sign Up
             </Link>
           </div>
+          <div className="text-sm text-muted-foreground text-center">
+            <Link
+              href="/doctor/forgot-password"
+              className="text-blue-600 font-medium"
+            >
+              Forgot Password?
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
