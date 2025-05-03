@@ -21,7 +21,7 @@ export default function OTPScreen() {
 
 		try {
 			const res = await axios.post(
-				'http://localhost:8000/hospital/verify-otp',
+				'http://localhost:8000/patients/verify-otp',
 				{
 					otp,
 					contactNumber,
