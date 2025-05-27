@@ -5,7 +5,7 @@ The **Unified Health Service (UHS)** is a comprehensive digital healthcare manag
 ---
 
 # UI
-<img width="1321" alt="image" src="https://github.com/user-attachments/assets/79df5ccb-b992-40ce-aeac-c28fa32bb0d7" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/422db2c3-f0d5-49d2-9489-a5e852931fb9" />
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/abc741c3-ddc9-41c6-a3d8-49e8a636c85e" />
 <img width="1351" alt="image" src="https://github.com/user-attachments/assets/e227f1b9-f7b9-403b-8c31-2eac9f53382a" />
 <img width="1364" alt="image" src="https://github.com/user-attachments/assets/233d4b0c-064e-40b8-bee5-b1028b7abd4a" />
